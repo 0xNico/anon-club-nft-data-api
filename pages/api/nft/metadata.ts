@@ -1,6 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
+import corsMiddleware from '../../../lib/corsMiddleware';
 
 const metadata = [
 	{
@@ -61277,6 +61278,7 @@ const metadata = [
 	}
 ];
 
-export default async (_req: NextApiRequest, res: NextApiResponse) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+    corsMiddleware(req, res);
     res.status(202).json(JSON.stringify(metadata, null, 2));
   }
