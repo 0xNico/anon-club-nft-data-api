@@ -1,6 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
+import corsMiddleware from '../../../lib/corsMiddleware';
 
 const hashlist = [
   "3NQuoppk1aYagDBJtzJjbqhjEmP9GU99Dfj6KcH51t7N",
@@ -893,6 +894,7 @@ const hashlist = [
   "64jvtNGfkNxk48Gbx2jwQMAex9G7P1s9ivSskg7m2PMv"
 ];
 
-export default async (_req: NextApiRequest, res: NextApiResponse) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+  corsMiddleware(req, res);
   res.status(200).json(JSON.stringify(hashlist, null, 1));
 }
